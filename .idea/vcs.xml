@@ -2,6 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/[Bài tập] Refactoring" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/[Thực hành] Refactoring - tách phương thức/app-cleancode-refactoring-method-extraction" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app-cleancode-tennis-game" vcs="Git" />
   </component>
 </project>
