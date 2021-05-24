@@ -2,24 +2,28 @@
 
 class TennisGame
 {
-    const zero = 0;
-    const one = 1;
-    const two = 2;
-    const three = 3;
-    const four = 4;
-    const player1 = 1;
-    const player2 = 2;
+    const ZERO = 0;
+    const ONE = 1;
+    const TWO = 2;
+    const THREE = 3;
+    const FOUR = 4;
+    const SCORE_OF_PLAYER1 = 1;
+    const SCORE_OF_PLAYER2 = 2;
     public string $scoreString = '';
 
     public function getScore($player1Name, $player2Name, $player1Score, $player2Score)
     {
 
-        if ($player1Score == $player2Score) {
+        $equalScore = $player1Score == $player2Score;
+        if ($equalScore) {
             $this->equalScore($player1Score);
-        } else if ($player1Score >= self::four || $player2Score >= self::four) {
-            $this->moreThan40Scores($player1Score, $player2Score);
         } else {
-            $this->lessThan40Scores($player1Score, $player2Score);
+            $moreThan40Scores = $player1Score >= self::FOUR || $player2Score >= self::FOUR;
+            if ($moreThan40Scores) {
+                $this->moreThan40Scores($player1Score, $player2Score);
+            } else {
+                $this->lessThan40Scores($player1Score, $player2Score);
+            }
         }
     }
 
@@ -28,45 +32,45 @@ class TennisGame
         return $this->scoreString;
     }
 
-    public function lessThan40Scores($player1Score, $player2Score): void
+    private function lessThan40Scores($player1Score, $player2Score): void
     {
         $playerScore = 0;
-        for ($i = self::player1; $i <= self::player2; $i++) {
-            if ($i == self::player1) $playerScore = $player1Score;
+        for ($i = self::SCORE_OF_PLAYER1; $i <= self::SCORE_OF_PLAYER2; $i++) {
+            if ($i == self::SCORE_OF_PLAYER1) $playerScore = $player1Score;
             else {
                 $this->scoreString .= "-";
                 $playerScore = $player2Score;
             }
             switch ($playerScore) {
-                case self::zero:
+                case self::ZERO:
                     $this->scoreString .= "Love";
                     break;
-                case self::one:
+                case self::ONE:
                     $this->scoreString .= "Fifteen";
                     break;
-                case self::two:
+                case self::TWO:
                     $this->scoreString .= "Thirty";
                     break;
-                case self::three:
+                case self::THREE:
                     $this->scoreString .= "Forty";
                     break;
             }
         }
     }
 
-    public function equalScore($player1Score): void
+    private function equalScore($player1Score): void
     {
         switch ($player1Score) {
-            case self::zero:
+            case self::ZERO:
                 $this->scoreString = "Love-All";
                 break;
-            case self::one:
+            case self::ONE:
                 $this->scoreString = "Fifteen-All";
                 break;
-            case self::two:
+            case self::TWO:
                 $this->scoreString = "Thirty-All";
                 break;
-            case self::three:
+            case self::THREE:
                 $this->scoreString = "Forty-All";
                 break;
             default:
@@ -77,7 +81,7 @@ class TennisGame
     }
 
 
-    public function moreThan40Scores($player1Score, $player2Score): void
+    private function moreThan40Scores($player1Score, $player2Score): void
     {
         $result = $player1Score - $player2Score;
         if ($result == 1) $this->scoreString = "Advantage player1";
